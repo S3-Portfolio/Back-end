@@ -23,8 +23,8 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore "./DiveSpot" 
+    - name: Restore Dependencies
+      run: npm restore "./DiveSpot" 
     - name: Build
       run: dotnet build --no-restore "./DiveSpot"
     - name: Test
