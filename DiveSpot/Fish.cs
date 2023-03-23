@@ -2,15 +2,19 @@
 {
     public class Fish
     {
-        private int Id;
-        private string Name;
-        private int Depth;
-        private string Img;
-        private string SName;
+        public readonly int Id;
+        public readonly string Name;
+        public readonly int Depth;
+        public readonly string Img;
+        public readonly string SName;
 
-        public Fish() 
+        public Fish(int id, string name, string Sname, int depth, string img) 
         {
-
+            Id = id;
+            Name = name;
+            SName = Sname;
+            Depth = depth;
+            Img = img;
         }
     }
 }

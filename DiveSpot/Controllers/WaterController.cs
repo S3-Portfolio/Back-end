@@ -8,6 +8,8 @@ namespace DiveSpot.Controllers
     [ApiController]
     public class WaterController : ControllerBase
     {
+        DataBase dataBase = new DataBase();
+
         // GET: api/<WaterController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -17,9 +19,9 @@ namespace DiveSpot.Controllers
 
         // GET api/<WaterController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Water Get(int id)
         {
-            return "value";
+            return dataBase.GetWater(id);
         }
 
         // POST api/<WaterController>

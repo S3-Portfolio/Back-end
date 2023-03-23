@@ -2,15 +2,21 @@
 {
     public class Dive
     {
-        private int Id;
-        private string Name;
-        private int Depth;
-        private int Duration;
-        private string Qualifications;
+        public readonly int Id;
+        public readonly int WaterId;
+        public readonly string Name;
+        public readonly int Depth;
+        public readonly int Duration;
+        public readonly string Qualifications;
 
-        public Dive()
+        public Dive(int id, int waterid, string name, int depth, int duration, string qualifications)
         {
-
+            Id = id;
+            WaterId = waterid;
+            Name = name;
+            Depth = depth;
+            Duration = duration;
+            Qualifications = qualifications;
         }
     }
 }

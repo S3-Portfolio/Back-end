@@ -8,6 +8,8 @@ namespace DiveSpot.Controllers
     [ApiController]
     public class FishController : ControllerBase
     {
+        DataBase dataBase = new DataBase();
+
         // GET: api/<FishController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -17,9 +19,9 @@ namespace DiveSpot.Controllers
 
         // GET api/<FishController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Fish Get(int id)
         {
-            return "value";
+            return dataBase.GetFish(id);
         }
 
         // POST api/<FishController>
