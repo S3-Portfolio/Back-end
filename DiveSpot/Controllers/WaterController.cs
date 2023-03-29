@@ -12,9 +12,9 @@ namespace DiveSpot.Controllers
 
         // GET: api/<WaterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Water> Get()
         {
-            return new string[] { "value1", "value2" };
+            return dataBase.GetAllWater();
         }
 
         // GET api/<WaterController>/5

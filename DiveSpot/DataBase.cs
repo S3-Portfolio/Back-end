@@ -261,9 +261,12 @@ namespace DiveSpot
                 string country = Convert.ToString(row["Country"]);
 
                 Water water = new Water(id, name, country);
-                foreach (Dive dive in GetDiveListPerWater(water.Id))
+                if(GetDiveListPerWater(water.Id) != null)
                 {
-                    water.AddDiveToList(dive);
+                    foreach (Dive dive in GetDiveListPerWater(water.Id))
+                    {
+                        water.AddDiveToList(dive);
+                    }
                 }
 
                 list.Add(water);
