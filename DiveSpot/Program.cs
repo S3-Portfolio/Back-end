@@ -1,3 +1,7 @@
+using DiveSpot;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +17,8 @@ builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddDefaultPolicy(policy =>
         policy.WithOrigins("").AllowAnyHeader().AllowAnyHeader())
 );
+var connectionString = builder.Configuration.GetConnectionString("DBcontext");
+builder.Services.AddDbContext<DBcontext>(x => x.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

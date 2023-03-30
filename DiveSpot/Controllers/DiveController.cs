@@ -10,8 +10,15 @@ namespace DiveSpot.Controllers
     [ApiController]
     public class DiveController : ControllerBase
     {
-        DataBase dataBase = new DataBase();
-        
+        private readonly DBcontext _context;
+        private readonly DataBase dataBase;
+
+        public DiveController(DBcontext context)
+        {
+            _context = context;
+            dataBase = new DataBase(context);
+        }
+
         // GET: api/<DiveController>
         [HttpGet]
         public List<Dive> Get()

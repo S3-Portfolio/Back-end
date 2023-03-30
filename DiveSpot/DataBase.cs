@@ -1,11 +1,12 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using DiveSpot.Entities;
 
 namespace DiveSpot
 {
     public class DataBase
     {
-        const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DiveSpotDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        /*const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DiveSpotDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public DataTable DBQuery(SqlCommand command)
         {
@@ -20,12 +21,19 @@ namespace DiveSpot
 
                 return data;
             }
+        }*/
+
+        private readonly DBcontext _context;
+        public DataBase(DBcontext context)
+        {
+            _context = context;
         }
+
 
         // Fish
         public List<Fish> GetAllFish()
         {
-            string queryString = "SELECT ID, Name, SName, Depth, Img FROM dbo.Fish;";
+            /*string queryString = "SELECT ID, Name, SName, Depth, Img FROM dbo.Fish;";
 
             DataTable data = DBQuery(new SqlCommand(queryString));
 
@@ -43,12 +51,16 @@ namespace DiveSpot
 
                 list.Add(fish);
             }
-            return list;
+            return list;*/
+
+            List<Fish> fish = _context.Fish.ToList();
+
+            return fish;
         }
 
         public Fish GetFish(int Id)
         {
-            string queryString = "SELECT ID, Name, SName, Depth, Img FROM dbo.Fish WHERE ID = @fishID;";
+            /*string queryString = "SELECT ID, Name, SName, Depth, Img FROM dbo.Fish WHERE ID = @fishID;";
 
             SqlCommand command = new SqlCommand(queryString);
             command.Parameters.AddWithValue("@fishID", Id);
@@ -64,12 +76,14 @@ namespace DiveSpot
 
             Fish fish = new Fish(id, name, Sname, depth, img);
 
-            return fish;
+            return fish;*/
+
+            return _context.Fish.FirstOrDefault(f => f.Id.Equals(Id));
         }
 
         public void AddFish(Fish fish)
         {
-            string queryString = "INSERT INTO dbo.Fish (ID, Name, SName, Depth, Img) VALUES (@ID, @Name, @SName, @Depth, @Img);";
+            /*string queryString = "INSERT INTO dbo.Fish (ID, Name, SName, Depth, Img) VALUES (@ID, @Name, @SName, @Depth, @Img);";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -82,12 +96,15 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
+
+            _context.Fish.Add(fish);
+            _context.SaveChanges();
         }
 
         public void UpdateFish(Fish fish)
         {
-            string queryString = "INSERT INTO dbo.Fish (ID, Name, SName, Depth, Img) VALUES (@ID, @Name, @SName, @Depth, @Img) WHERE ID = @ID;";
+            /*string queryString = "INSERT INTO dbo.Fish (ID, Name, SName, Depth, Img) VALUES (@ID, @Name, @SName, @Depth, @Img) WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -100,12 +117,12 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
 
         public void DeleteFish(int id) 
         {
-            string queryString = "DELETE FROM dbo.Fish WHERE ID = @ID;";
+            /*string queryString = "DELETE FROM dbo.Fish WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -114,13 +131,13 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
 
         // Dive
         public List<Dive> GetAllDive()
         {
-            string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive";
+            /*string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive";
 
             DataTable data = DBQuery(new SqlCommand(queryString));
 
@@ -140,12 +157,16 @@ namespace DiveSpot
                 list.Add(dive);
             }
 
-            return list;
+            return list;*/
+
+            List<Dive> dives = _context.Dive.ToList();
+
+            return dives;
         }
 
         private List<Dive> GetDiveListPerWater(int waterId) 
         {
-            string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive WHERE WaterID = @WaterID";
+            /*string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive WHERE WaterID = @WaterID";
 
             SqlCommand command = new SqlCommand(queryString);
             command.Parameters.AddWithValue("@WaterID", waterId);
@@ -168,12 +189,16 @@ namespace DiveSpot
                 list.Add(dive);
             }
 
-            return list;
+            return list;*/
+
+            List<Dive> dives = _context.Dive.Where(d => d.WaterId == waterId).ToList();
+
+            return dives;
         }
 
         public Dive GetDive(int Id)
         {
-            string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive WHERE ID = @ID";
+            /*string queryString = "SELECT ID, WaterID, Name, Depth, Duration, Qualifications FROM dbo.Dive WHERE ID = @ID";
 
             SqlCommand command = new SqlCommand(queryString);
             command.Parameters.AddWithValue("@ID", Id);
@@ -190,12 +215,14 @@ namespace DiveSpot
 
             Dive dive = new Dive(id, waterid, name, depth, duration, qualifications);
 
-            return dive;
+            return dive;*/
+
+            return _context.Dive.FirstOrDefault(d => d.Id.Equals(Id));
         }
 
         public void AddDive(Dive dive)
         {
-            string queryString = "INSERT INTO dbo.Dive (ID, WaterID, Name, Depth, Duration, Qualifications) VALUES (@ID, @WaterID, @Name, @Depth, @Duration, @Qualifications);";
+            /*string queryString = "INSERT INTO dbo.Dive (ID, WaterID, Name, Depth, Duration, Qualifications) VALUES (@ID, @WaterID, @Name, @Depth, @Duration, @Qualifications);";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -209,12 +236,15 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
+
+            _context.Dive.Add(dive);
+            _context.SaveChanges();
         }
 
         public void UpdateDive(Dive dive)
         {
-            string queryString = "INSERT INTO dbo.Dive (ID, WaterID, Name, Depth, Duration, Qualifications) VALUES (@ID, @WaterID, @Name, @Depth, @Duration, @Qualifications) WHERE ID = @ID;";
+            /*string queryString = "INSERT INTO dbo.Dive (ID, WaterID, Name, Depth, Duration, Qualifications) VALUES (@ID, @WaterID, @Name, @Depth, @Duration, @Qualifications) WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -228,12 +258,12 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
 
         public void DeleteDive(int id)
         {
-            string queryString = "DELETE FROM dbo.Dive WHERE ID = @ID;";
+            /*string queryString = "DELETE FROM dbo.Dive WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -242,13 +272,13 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
 
         // Water
         public List<Water> GetAllWater()
         {
-            string queryString = "SELECT ID, Name, Country FROM dbo.Water";
+            /*string queryString = "SELECT ID, Name, Country FROM dbo.Water";
 
             DataTable data = DBQuery(new SqlCommand(queryString));
 
@@ -272,12 +302,16 @@ namespace DiveSpot
                 list.Add(water);
             }
 
-            return list;
+            return list;*/
+
+            List<Water> water = _context.Water.ToList();
+
+            return water;
         }
 
         public Water GetWater(int Id)
         {
-            string queryString = "SELECT ID, Name, Country FROM dbo.Water WHERE ID = @ID";
+            /*string queryString = "SELECT ID, Name, Country FROM dbo.Water WHERE ID = @ID";
 
             SqlCommand command = new SqlCommand(queryString);
             command.Parameters.AddWithValue("@ID", Id);
@@ -295,12 +329,14 @@ namespace DiveSpot
                 water.AddDiveToList(dive);
             }
 
-            return water;
+            return water;*/
+
+            return _context.Water.FirstOrDefault(w => w.Id.Equals(Id));
         }
 
         public void AddWater(Water water)
         {
-            string queryString = "INSERT INTO dbo.Water (ID, Name, Country) VALUES (@ID, @Name, @Country);";
+            /*string queryString = "INSERT INTO dbo.Water (ID, Name, Country) VALUES (@ID, @Name, @Country);";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -311,12 +347,15 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
+
+            _context.Water.Add(water);
+            _context.SaveChanges();
         }
 
         public void UpdateWater(Water water)
         {
-            string queryString = "INSERT INTO dbo.Water (ID, Name, Country) VALUES (@ID, @Name, @Country) WHERE ID = @ID;";
+            /*string queryString = "INSERT INTO dbo.Water (ID, Name, Country) VALUES (@ID, @Name, @Country) WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -327,12 +366,12 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
 
         public void DeleteWater(int id)
         {
-            string queryString = "DELETE FROM dbo.Water WHERE ID = @ID;";
+            /*string queryString = "DELETE FROM dbo.Water WHERE ID = @ID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -341,7 +380,7 @@ namespace DiveSpot
 
                 command.Connection.Open();
                 command.ExecuteNonQuery();
-            }
+            }*/
         }
     }
 }

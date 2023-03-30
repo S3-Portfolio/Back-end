@@ -8,7 +8,14 @@ namespace DiveSpot.Controllers
     [ApiController]
     public class WaterController : ControllerBase
     {
-        DataBase dataBase = new DataBase();
+        private readonly DBcontext _context;
+        private readonly DataBase dataBase;
+
+        public WaterController(DBcontext context)
+        {
+            _context = context;
+            dataBase = new DataBase(context);
+        }
 
         // GET: api/<WaterController>
         [HttpGet]

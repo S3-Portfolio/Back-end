@@ -2,19 +2,19 @@
 {
     public class Water
     {
-        public readonly int Id;
-        public readonly string Name;
-        public readonly string Country;
-        public readonly List<Dive> dives;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string? Country { get; set; }
+        public List<Dive>? dives { get; set; }
 
-        public Water(int id, string name, string country) 
+        /*public Water(*//*int id, string name, string country*//*) 
         { 
-            Id = id;
+            *//*Id = id;
             Name = name;
-            Country = country;
-        }
+            Country = country;*//*
+        }*/
 
-        public void AddDiveToList(Dive dive)
+        /*public void AddDiveToList(Dive dive)
         {
             dives.Add(dive);
         }
@@ -27,6 +27,6 @@
         public List<Dive> GetList()
         {
             return dives;
-        }
+        }*/
     }
 }
