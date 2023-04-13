@@ -33,20 +33,23 @@ namespace DiveSpot.Controllers
 
         // POST api/<FishController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Fish fish)
         {
+            dataBase.AddFish(fish);
         }
 
-        // PUT api/<FishController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<FishController>
+        [HttpPut]
+        public void Put(Fish fish)
         {
+            dataBase.UpdateFish(fish);
         }
 
         // DELETE api/<FishController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            dataBase.DeleteFish(id);
         }
     }
 }

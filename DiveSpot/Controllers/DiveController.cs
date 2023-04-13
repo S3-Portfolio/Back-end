@@ -40,16 +40,18 @@ namespace DiveSpot.Controllers
             dataBase.AddDive(dive);
         }
 
-        // PUT api/<DiveController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<DiveController>
+        [HttpPut]
+        public void Put(Dive dive)
         {
+            dataBase.UpdateDive(dive);
         }
 
         // DELETE api/<DiveController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            dataBase.DeleteDive(id);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using DiveSpot.Entities;
 
 namespace DiveSpot
 {
@@ -118,6 +117,9 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            _context.Fish.Update(fish);
+            _context.SaveChanges();
         }
 
         public void DeleteFish(int id) 
@@ -132,6 +134,13 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            var f = new Fish()
+            {
+                Id = id,
+            };
+            _context.Fish.Remove(f);
+            _context.SaveChanges();
         }
 
         // Dive
@@ -259,6 +268,9 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            _context.Dive.Update(dive);
+            _context.SaveChanges();
         }
 
         public void DeleteDive(int id)
@@ -273,6 +285,10 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            var d = new Dive() { Id = id, };
+            _context.Dive.Remove(d);
+            _context.SaveChanges();
         }
 
         // Water
@@ -367,6 +383,9 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            _context.Water.Update(water);
+            _context.SaveChanges();
         }
 
         public void DeleteWater(int id)
@@ -381,6 +400,10 @@ namespace DiveSpot
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }*/
+
+            var w = new Water() { Id = id, };
+            _context.Water.Remove(w);
+            _context.SaveChanges();
         }
     }
 }
