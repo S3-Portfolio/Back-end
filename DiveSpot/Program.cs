@@ -14,8 +14,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers()
     .AddNewtonsoftJson();
 builder.Services.AddCors(policyBuilder =>
-    policyBuilder.AddDefaultPolicy(policy =>
-        policy.WithOrigins("").AllowAnyHeader().AllowAnyHeader())
+    policyBuilder.AddPolicy("Policy",
+    policy =>
+        policy.WithOrigins("http://example.com",
+ "http://localhost:3000").AllowAnyHeader().AllowAnyHeader())
 );
 var connectionString = builder.Configuration.GetConnectionString("DBcontext");
 builder.Services.AddDbContext<DBcontext>(x => x.UseSqlServer(connectionString));
@@ -30,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("Policy");
 app.UseAuthorization();
 
 app.MapControllers();
