@@ -9,6 +9,7 @@
         public int? Depth { get; set; }
         public int? Duration { get; set; }
         public string? Qualifications { get; set; }
+        public List<Fish> Fish { get; set; }
 
         /*public Dive(*//*int id, int waterid, string name, int depth, int duration, string qualifications*//*)
         {

@@ -21,7 +21,6 @@ namespace DiveSpot
         public DbSet<DiveSpot.Dive> Dive { get; set; }
         public DbSet<DiveSpot.Fish> Fish { get; set; }
         public DbSet<DiveSpot.Water> Water { get; set; }
-
-        
+        public DbSet<DiveSpot.Fish_Water> Fish_Water { get; set; }
     }
 }

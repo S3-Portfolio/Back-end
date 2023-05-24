@@ -24,6 +24,14 @@ namespace DiveSpot.Controllers
             return dataBase.GetAllFish();
         }
 
+        // GET api/<FishController>
+        [HttpGet]
+        [Route("Fish/Water/Waterid")]
+        public List<Fish> GetFishPerWater(int waterid)
+        {
+            return dataBase.GetFishPerWater(waterid);
+        }
+
         // GET api/<FishController>/5
         [HttpGet("{id}")]
         public Fish Get(int id)
