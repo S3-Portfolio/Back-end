@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiveSpot.Entities;
+using DiveSpot.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,12 +11,12 @@ namespace DiveSpot.Controllers
     public class FishController : ControllerBase
     {
         private readonly DBcontext _context;
-        private readonly DataBase dataBase;
+        private readonly FishRepository dataBase;
 
         public FishController(DBcontext context)
         {
             _context = context;
-            dataBase = new DataBase(context);
+            dataBase = new FishRepository(context);
         }
 
         // GET: api/<FishController>
@@ -26,7 +28,7 @@ namespace DiveSpot.Controllers
 
         // GET api/<FishController>
         [HttpGet]
-        [Route("Fish/Water/Waterid")]
+        [Route("Fish/Water/{Waterid}")]
         public List<Fish> GetFishPerWater(int waterid)
         {
             return dataBase.GetFishPerWater(waterid);

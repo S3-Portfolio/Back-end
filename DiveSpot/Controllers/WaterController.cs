@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiveSpot.Entities;
+using DiveSpot.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,12 +11,12 @@ namespace DiveSpot.Controllers
     public class WaterController : ControllerBase
     {
         private readonly DBcontext _context;
-        private readonly DataBase dataBase;
+        private readonly WaterRepository dataBase;
 
         public WaterController(DBcontext context)
         {
             _context = context;
-            dataBase = new DataBase(context);
+            dataBase = new WaterRepository(context);
         }
 
         // GET: api/<WaterController>

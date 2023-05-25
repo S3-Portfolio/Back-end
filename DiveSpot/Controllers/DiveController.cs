@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiveSpot.Entities;
+using DiveSpot.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,12 +13,12 @@ namespace DiveSpot.Controllers
     public class DiveController : ControllerBase
     {
         private readonly DBcontext _context;
-        private readonly DataBase dataBase;
+        private readonly DiveRepository dataBase;
 
         public DiveController(DBcontext context)
         {
             _context = context;
-            dataBase = new DataBase(context);
+            dataBase = new DiveRepository(context);
         }
 
         // GET: api/<DiveController>

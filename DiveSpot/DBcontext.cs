@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DiveSpot.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiveSpot
 {
@@ -18,9 +19,8 @@ namespace DiveSpot
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public DbSet<DiveSpot.Dive> Dive { get; set; }
-        public DbSet<DiveSpot.Fish> Fish { get; set; }
-        public DbSet<DiveSpot.Water> Water { get; set; }
-        public DbSet<DiveSpot.Fish_Water> Fish_Water { get; set; }
+        public DbSet<Dive> Dive { get; set; }
+        public DbSet<Fish> Fish { get; set; }
+        public DbSet<Water> Water { get; set; }
     }
 }
