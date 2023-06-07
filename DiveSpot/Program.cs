@@ -16,8 +16,7 @@ builder.Services.AddControllers()
 builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddPolicy("Policy",
     policy =>
-        policy.WithOrigins("http://example.com",
- "http://localhost:3000").AllowAnyHeader().AllowAnyHeader())
+        policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyHeader())
 );
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 var connectionString = builder.Configuration.GetConnectionString("DBcontext");
