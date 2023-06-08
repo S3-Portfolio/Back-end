@@ -10,13 +10,11 @@ namespace DiveSpot.Controllers
     [ApiController]
     public class FishController : ControllerBase
     {
-        private readonly DBcontext _context;
         private readonly FishRepository dataBase;
 
-        public FishController(DBcontext context)
+        public FishController()
         {
-            _context = context;
-            dataBase = new FishRepository(context);
+            dataBase = new FishRepository();
         }
 
         // GET: api/<FishController>

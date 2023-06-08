@@ -6,12 +6,17 @@ namespace DiveSpot.Repositories
     public class FishRepository
     {
         private readonly DBcontext _context;
-        public FishRepository(DBcontext context)
+        public FishRepository()
         {
-            _context = context;
+            _context = new DBcontext();
         }
 
-        public List<Fish> GetAllFish()
+        /*public List<Fish> GetAllFish()
+        {
+            return _context.Fish.ToList();
+        }*/
+
+        public virtual List<Fish> GetAllFish()
         {
             return _context.Fish.ToList();
         }
@@ -25,7 +30,7 @@ namespace DiveSpot.Repositories
             return fish;
         }
 
-        public Fish GetFish(int Id)
+        public virtual Fish GetFish(int Id)
         {
             return _context.Fish.FirstOrDefault(f => f.Id.Equals(Id));
         }

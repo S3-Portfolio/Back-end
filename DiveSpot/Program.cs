@@ -1,6 +1,7 @@
 using DiveSpot;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,11 @@ builder.Services.AddDbContext<DBcontext>(x => x.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -38,3 +44,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+/*public partial class Program 
+{
+
+}*/

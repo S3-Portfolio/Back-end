@@ -8,6 +8,10 @@ namespace DiveSpot
         public DBcontext(DbContextOptions<DBcontext> options) : base(options)
         { }
 
+        public DBcontext() : base()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()

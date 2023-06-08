@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiveSpot", "DiveSpot\DiveSpot.csproj", "{78A77BA7-2641-47DA-8D8B-3CDEBA3B8984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiveSpot", "DiveSpot\DiveSpot.csproj", "{78A77BA7-2641-47DA-8D8B-3CDEBA3B8984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiveSpot.Tests", "DiveSpotTests\DiveSpot.Tests.csproj", "{ADCE59E2-FBF7-4B61-ADBD-CA08B8660484}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{78A77BA7-2641-47DA-8D8B-3CDEBA3B8984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A77BA7-2641-47DA-8D8B-3CDEBA3B8984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A77BA7-2641-47DA-8D8B-3CDEBA3B8984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCE59E2-FBF7-4B61-ADBD-CA08B8660484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCE59E2-FBF7-4B61-ADBD-CA08B8660484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCE59E2-FBF7-4B61-ADBD-CA08B8660484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCE59E2-FBF7-4B61-ADBD-CA08B8660484}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
