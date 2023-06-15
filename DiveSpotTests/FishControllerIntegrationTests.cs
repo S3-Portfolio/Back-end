@@ -14,7 +14,7 @@ namespace DiveSpot.Tests
         public void Get_ReturnsFish()
         {
             // Arrange
-            Fish? fish = new Fish { Id = 1, Name = "Barber", Depth=30,Img= "https://upload.wikimedia.org/wikipedia/commons/7/75/Anthias_anthias_01.jpg",SName= "Anthias anthias" } ;
+            Fish fish = new Fish { Id = 1, Name = "Barber", Depth=30,Img= "https://upload.wikimedia.org/wikipedia/commons/7/75/Anthias_anthias_01.jpg",SName= "Anthias anthias" } ;
             var mockContext = new Mock<DBcontext>();
             var mockRepository = new Mock<FishRepository>();
             mockRepository.Setup(repo => repo.GetFish(fish.Id)).Returns(fish);
